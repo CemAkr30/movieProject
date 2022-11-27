@@ -28,6 +28,7 @@ public class KullaniciController {
 
     @GetMapping("/getKullanici")
     public Kullanici getKullanici(@PathVariable Long kullaniciId){
+        //
         return kullaniciService.getKullanici(kullaniciId);
     }
 
