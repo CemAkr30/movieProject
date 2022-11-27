@@ -1,14 +1,11 @@
 package com.springfilmproject.springfilmproject.controller;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.springfilmproject.springfilmproject.dto.KullaniciDto;
 import com.springfilmproject.springfilmproject.enums.Cinsiyet;
 import com.springfilmproject.springfilmproject.model.Kullanici;
 import com.springfilmproject.springfilmproject.service.KullaniciService;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +28,11 @@ public class KullaniciController {
     @GetMapping("/getKullanici")
     public Kullanici getKullanici(@PathVariable Long kullaniciId){
         return kullaniciService.getKullanici(kullaniciId);
+    }
+
+    @GetMapping("/getLogin")
+    public List<Kullanici> getLogin(@PathVariable String kullaniciAdi, @PathVariable String sifre){
+        return kullaniciService.getLogin(kullaniciAdi,sifre);
     }
 
     @PostMapping("/createKullanici")
@@ -57,6 +59,4 @@ public class KullaniciController {
         }
         return "";
     }
-
-
 }

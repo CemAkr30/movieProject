@@ -4,6 +4,8 @@ import com.springfilmproject.springfilmproject.dto.KullaniciDto;
 import com.springfilmproject.springfilmproject.enums.Cinsiyet;
 import com.springfilmproject.springfilmproject.model.Kullanici;
 import com.springfilmproject.springfilmproject.repository.KullaniciRepository;
+import org.hibernate.query.NativeQuery;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,9 +25,13 @@ public class KullaniciService {
         return kullaniciRepository.findAll();
     }
 
-    @GetMapping
     public Kullanici getKullanici( Long kullaniciId ){
         return kullaniciRepository.findById(kullaniciId).orElse(null);
+    }
+
+    @Query("SELECT u FROM Kullanici u WHERE u.kullaniciAdi = ?1 and u.sifre = ?2")
+    public List<Kullanici> getLogin( String kullaniciAdi, String sifre ){
+      return kullaniciRepository.findAll();
     }
 
     public boolean createKullanici(KullaniciDto kullaniciDto){
