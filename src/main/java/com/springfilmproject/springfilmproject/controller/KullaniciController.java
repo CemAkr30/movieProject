@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/kullaniciLogin")
+@CrossOrigin(origins = "*")
 public class KullaniciController {
 
     private final KullaniciService kullaniciService;
