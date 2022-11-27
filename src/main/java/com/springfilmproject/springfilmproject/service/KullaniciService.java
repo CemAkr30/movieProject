@@ -5,6 +5,10 @@ import com.springfilmproject.springfilmproject.enums.Cinsiyet;
 import com.springfilmproject.springfilmproject.model.Kullanici;
 import com.springfilmproject.springfilmproject.repository.KullaniciRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @Service
 public class KullaniciService {
@@ -15,6 +19,14 @@ public class KullaniciService {
         this.kullaniciRepository = kullaniciRepository;
     }
 
+    public List<Kullanici> getAllKullanici(){
+        return kullaniciRepository.findAll();
+    }
+
+    @GetMapping
+    public Kullanici getKullanici( Long kullaniciId ){
+        return kullaniciRepository.findById(kullaniciId).orElse(null);
+    }
 
     public boolean createKullanici(KullaniciDto kullaniciDto){
         Kullanici kullanici

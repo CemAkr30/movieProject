@@ -9,9 +9,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/kullaniciLogin")
@@ -23,6 +23,15 @@ public class KullaniciController {
         this.kullaniciService = kullaniciService;
     }
 
+    @GetMapping
+    public List<Kullanici> getAllKullanici(){
+        return kullaniciService.getAllKullanici();
+    }
+
+    @GetMapping
+    public Kullanici getKullanici(@PathVariable Long kullaniciId){
+        return kullaniciService.getKullanici(kullaniciId);
+    }
 
     @PostMapping
     public String createKullanici(String json){
