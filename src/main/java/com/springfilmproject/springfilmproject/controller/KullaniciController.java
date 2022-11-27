@@ -15,6 +15,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class KullaniciController {
 
+    //todo b.ö and c.a
     private final KullaniciService kullaniciService;
 
     public KullaniciController(KullaniciService kullaniciService) {
