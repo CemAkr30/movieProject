@@ -23,17 +23,17 @@ public class KullaniciController {
         this.kullaniciService = kullaniciService;
     }
 
-    @GetMapping
+    @GetMapping("/getAllKullanici")
     public List<Kullanici> getAllKullanici(){
         return kullaniciService.getAllKullanici();
     }
 
-    @GetMapping
+    @GetMapping("/getKullanici")
     public Kullanici getKullanici(@PathVariable Long kullaniciId){
         return kullaniciService.getKullanici(kullaniciId);
     }
 
-    @PostMapping
+    @PostMapping("/createKullanici")
     public String createKullanici(String json){
         JSONObject obj = null;
         KullaniciDto kullaniciDto = new KullaniciDto();
