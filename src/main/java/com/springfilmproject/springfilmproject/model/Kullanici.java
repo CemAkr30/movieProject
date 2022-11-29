@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Kullanici {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "KULLANICI_ADI")
@@ -26,8 +26,9 @@ public class Kullanici {
     @Column(name = "EMAIL")
     private String email;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "CINSIYET")
-    private Long cinsiyet;
+    private Cinsiyet cinsiyet;
 
 
     public Long getId() {
@@ -63,14 +64,13 @@ public class Kullanici {
     }
 
 
-    public Long getCinsiyet() {
+    public Cinsiyet getCinsiyet() {
         return cinsiyet;
     }
 
-    public void setCinsiyet(Long cinsiyet) {
+    public void setCinsiyet(Cinsiyet cinsiyet) {
         this.cinsiyet = cinsiyet;
     }
-
 
     @Override
     public boolean equals(Object o) {

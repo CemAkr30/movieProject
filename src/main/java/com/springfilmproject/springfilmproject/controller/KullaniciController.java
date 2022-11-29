@@ -1,5 +1,6 @@
 package com.springfilmproject.springfilmproject.controller;
 
+import com.springfilmproject.springfilmproject.dto.KullaniciAuthDto;
 import com.springfilmproject.springfilmproject.dto.KullaniciDto;
 import com.springfilmproject.springfilmproject.enums.Cinsiyet;
 import com.springfilmproject.springfilmproject.model.Kullanici;
@@ -11,36 +12,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/kullaniciLogin")
-@CrossOrigin(origins = "*")
+@RequestMapping("/v1/kullanici")
+@CrossOrigin("*")
 public class KullaniciController {
 
-    //todo b.ö and c.a
     private final KullaniciService kullaniciService;
 
     public KullaniciController(KullaniciService kullaniciService) {
         this.kullaniciService = kullaniciService;
     }
 
-    @GetMapping("/getAllKullanici")
-    public List<Kullanici> getAllKullanici(){
-        return kullaniciService.getAllKullanici();
+    @GetMapping("/all")
+    public List<Kullanici> getAll(){
+        return kullaniciService.getButunKullanici();
     }
 
-    @GetMapping("/getKullanici")
-    public Kullanici getKullanici(@PathVariable Long kullaniciId){
-        //
+    @GetMapping("/{kullaniciId}")
+    public Kullanici get(@PathVariable Long kullaniciId){
         return kullaniciService.getKullanici(kullaniciId);
     }
 
-    @GetMapping("/getLogin")
-    public List<Kullanici> getLogin(@PathVariable String kullaniciAdi, @PathVariable String sifre){
-        return kullaniciService.getLogin(kullaniciAdi,sifre);
+    @PostMapping("/login")
+    public long login(@RequestBody KullaniciAuthDto kullaniciAuthDto){
+        return kullaniciService.kullaniciVarMi(kullaniciAuthDto);
     }
 
-    @PostMapping("/createKullanici")
-    public String createKullanici(String json){
-        JSONObject obj = null;
+    @DeleteMapping("/delete/{id}")
+    public boolean delete(@PathVariable Long id){
+        return kullaniciService.kullaniciSil(id);
+    }
+
+    @PostMapping("/create")
+    public String create(@RequestBody Kullanici kullanici){
+        return "";
+        /* JSONObject obj = null;
         KullaniciDto kullaniciDto = new KullaniciDto();
         try {
             obj = new JSONObject(json);
@@ -59,7 +64,11 @@ public class KullaniciController {
         kullaniciService.createKullanici(kullaniciDto);
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-        return "";
+        }*/
     }
+
+    /*
+     * /delete/id
+     * id >= silinecek kaydın id'si
+     * */
 }

@@ -1,5 +1,6 @@
 package com.springfilmproject.springfilmproject.service;
 
+import com.springfilmproject.springfilmproject.dto.KullaniciAuthDto;
 import com.springfilmproject.springfilmproject.dto.KullaniciDto;
 import com.springfilmproject.springfilmproject.enums.Cinsiyet;
 import com.springfilmproject.springfilmproject.model.Kullanici;
@@ -21,34 +22,54 @@ public class KullaniciService {
         this.kullaniciRepository = kullaniciRepository;
     }
 
-    public List<Kullanici> getAllKullanici(){
+
+    public List<Kullanici> getButunKullanici() {
         return kullaniciRepository.findAll();
     }
 
-    public Kullanici getKullanici( Long kullaniciId ){
+    public Kullanici getKullanici(Long kullaniciId) {
         return kullaniciRepository.findById(kullaniciId).orElse(null);
     }
 
-    @Query("SELECT u FROM Kullanici u WHERE u.kullaniciAdi = ?1 and u.sifre = ?2")
-    public List<Kullanici> getLogin( String kullaniciAdi, String sifre ){
-      return kullaniciRepository.findAll();
+    public long kullaniciVarMi(KullaniciAuthDto kullaniciAuthDto) {
+        return kullaniciRepository.countByKullaniciAdiAndSifre(kullaniciAuthDto.getKullaniciAdi(), kullaniciAuthDto.getSifre());
     }
 
-    public boolean createKullanici(KullaniciDto kullaniciDto){
-        Kullanici kullanici
-                 = new Kullanici();
-            if(kullaniciDto!=null) {
-                kullanici.setKullaniciAdi(kullaniciDto.getKullaniciAdi());
-                kullanici.setSifre(kullaniciDto.getSifre());
-                kullanici.setEmail(kullaniciDto.getEmail());
+    public boolean kullaniciSil(Long kullaniciId) {
+        if (kullaniciRepository.findById(kullaniciId).isPresent()) {
+            kullaniciRepository.deleteById(kullaniciId);
+            return true;
+        }
+        return false;
+    }
 
-                if(kullaniciDto.getCinsiyet().equals(Cinsiyet.ERKEK)){
-                    kullanici.setCinsiyet(Long.valueOf(1));
-                }else{
-                    kullanici.setCinsiyet(Long.valueOf(2));
-                }
-                kullaniciRepository.save(kullanici);
-            }
+    public boolean createKullanici(KullaniciDto kullaniciDto) {
+//        Kullanici kullanici
+//                = new Kullanici();
+//        if(kullaniciDto!=null) {
+//            kullanici.setKullaniciAdi(kullaniciDto.getKullaniciAdi());
+//            kullanici.setSifre(kullaniciDto.getSifre());
+//            kullanici.setEmail(kullaniciDto.getEmail());
+//                = new Kullanici();
+//            if (kullaniciDto != null) {
+//                kullanici.setKullaniciAdi(kullaniciDto.getKullaniciAdi());
+//                kullanici.setSifre(kullaniciDto.getSifre());
+//                kullanici.setEmail(kullaniciDto.getEmail());
+//
+//                if(kullaniciDto.getCinsiyet().equals(Cinsiyet.ERKEK)){
+//                    kullanici.setCinsiyet(Long.valueOf(1));
+//                }else{
+//                    kullanici.setCinsiyet(Long.valueOf(2));
+//                }
+//                kullaniciRepository.save(kullanici);
+//            }
+//            if (kullaniciDto.getCinsiyet().equals(Cinsiyet.ERKEK)) {
+//                kullanici.setCinsiyet(Cinsiyet.ERKEK);
+//            } else {
+//                kullanici.setCinsiyet(Cinsiyet.KADIN);
+//            }
+//            kullaniciRepository.save(kullanici);
+//        }
         return true;
     }
 
