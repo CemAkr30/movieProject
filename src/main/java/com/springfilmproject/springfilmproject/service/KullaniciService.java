@@ -43,34 +43,21 @@ public class KullaniciService {
         return false;
     }
 
-    public boolean createKullanici(KullaniciDto kullaniciDto) {
-//        Kullanici kullanici
-//                = new Kullanici();
-//        if(kullaniciDto!=null) {
-//            kullanici.setKullaniciAdi(kullaniciDto.getKullaniciAdi());
-//            kullanici.setSifre(kullaniciDto.getSifre());
-//            kullanici.setEmail(kullaniciDto.getEmail());
-//                = new Kullanici();
-//            if (kullaniciDto != null) {
-//                kullanici.setKullaniciAdi(kullaniciDto.getKullaniciAdi());
-//                kullanici.setSifre(kullaniciDto.getSifre());
-//                kullanici.setEmail(kullaniciDto.getEmail());
-//
-//                if(kullaniciDto.getCinsiyet().equals(Cinsiyet.ERKEK)){
-//                    kullanici.setCinsiyet(Long.valueOf(1));
-//                }else{
-//                    kullanici.setCinsiyet(Long.valueOf(2));
-//                }
-//                kullaniciRepository.save(kullanici);
-//            }
-//            if (kullaniciDto.getCinsiyet().equals(Cinsiyet.ERKEK)) {
-//                kullanici.setCinsiyet(Cinsiyet.ERKEK);
-//            } else {
-//                kullanici.setCinsiyet(Cinsiyet.KADIN);
-//            }
-//            kullaniciRepository.save(kullanici);
-//        }
-        return true;
+    public Kullanici createKullanici(KullaniciDto kullaniciDto) {
+        Kullanici kullanici
+                 = new Kullanici();
+        if(kullaniciDto!=null){
+                kullanici.setKullaniciAdi(kullaniciDto.getKullaniciAdi());
+                kullanici.setSifre(kullaniciDto.getSifre());
+                kullanici.setEmail(kullaniciDto.getEmail());
+            if(Cinsiyet.ERKEK.toString().toUpperCase().equals(kullaniciDto.getCinsiyet().toString().toUpperCase())){
+                kullanici.setCinsiyet(Cinsiyet.ERKEK);
+            }else{
+                kullanici.setCinsiyet(Cinsiyet.KADIN);
+            }
+                kullaniciRepository.save(kullanici);
+        }
+        return kullanici;
     }
 
 }

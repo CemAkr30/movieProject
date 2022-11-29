@@ -4,18 +4,16 @@ import com.springfilmproject.springfilmproject.enums.Cinsiyet;
 
 import lombok.NoArgsConstructor;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
 
 @NoArgsConstructor
 public class KullaniciDto {
     private String kullaniciAdi;
     private String sifre;
     private String email;
-    private Cinsiyet cinsiyet;
+    private String cinsiyet;
 
     public String getKullaniciAdi() {
         return kullaniciAdi;
@@ -41,11 +39,11 @@ public class KullaniciDto {
         this.email = email;
     }
 
-    public Cinsiyet getCinsiyet() {
+    public String getCinsiyet() {
         return cinsiyet;
     }
 
-    public void setCinsiyet(Cinsiyet cinsiyet) {
+    public void setCinsiyet(String cinsiyet) {
         this.cinsiyet = cinsiyet;
     }
 }

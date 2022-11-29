@@ -43,28 +43,8 @@ public class KullaniciController {
     }
 
     @PostMapping("/create")
-    public String create(@RequestBody Kullanici kullanici){
-        return "";
-        /* JSONObject obj = null;
-        KullaniciDto kullaniciDto = new KullaniciDto();
-        try {
-            obj = new JSONObject(json);
-        String kullaniciAdi = obj.getJSONObject("kullaniciAdi").toString();
-        String sifre = obj.getJSONObject("sifre").toString();
-        String email = obj.getJSONObject("email").toString();
-        String cinsiyet = obj.getJSONObject("cinsiyet").toString();
-        kullaniciDto.setKullaniciAdi(kullaniciAdi);
-        kullaniciDto.setSifre(sifre);
-        kullaniciDto.setEmail(email);
-        if(cinsiyet=="1"){
-            kullaniciDto.setCinsiyet(Cinsiyet.ERKEK);
-        }else{
-            kullaniciDto.setCinsiyet(Cinsiyet.KADIN);
-        }
-        kullaniciService.createKullanici(kullaniciDto);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
+    public String create(@RequestBody KullaniciDto kullaniciDto){
+        return kullaniciService.createKullanici(kullaniciDto).toString() ;
     }
 
     /*
