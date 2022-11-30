@@ -1,5 +1,6 @@
 package com.springfilmproject.springfilmproject.Kullanici;
 
+import com.springfilmproject.springfilmproject.Defaults.Defaults;
 import com.springfilmproject.springfilmproject.enums.Cinsiyet;
 import com.springfilmproject.springfilmproject.model.Kullanici;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,9 @@ public class KullaniciService {
         return kullaniciRepository.findById(kullaniciId).orElse(null);
     }
 
-    public long kullaniciVarMi(KullaniciAuthDto kullaniciAuthDto) {
-        return kullaniciRepository.countByKullaniciAdiAndSifre(kullaniciAuthDto.getKullaniciAdi(), kullaniciAuthDto.getSifre());
+    public String kullaniciVarMi(KullaniciAuthDto kullaniciAuthDto) {
+        return  kullaniciRepository.countByKullaniciAdiAndSifre(kullaniciAuthDto.getKullaniciAdi(), kullaniciAuthDto.getSifre())
+                ==1 ? Defaults.JSON_TRUE : Defaults.JSON_FALSE;
     }
 
     public boolean kullaniciSil(Long kullaniciId) {

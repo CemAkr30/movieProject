@@ -27,7 +27,7 @@ public class KullaniciController {
     }
 
     @PostMapping("/login")
-    public long login(@RequestBody KullaniciAuthDto kullaniciAuthDto){
+    public String login(@RequestBody KullaniciAuthDto kullaniciAuthDto){
         return kullaniciService.kullaniciVarMi(kullaniciAuthDto);
     }
 
