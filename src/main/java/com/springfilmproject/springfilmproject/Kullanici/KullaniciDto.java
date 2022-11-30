@@ -1,5 +1,6 @@
 package com.springfilmproject.springfilmproject.Kullanici;
 
+import com.springfilmproject.springfilmproject.enums.Cinsiyet;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -7,7 +8,7 @@ public class KullaniciDto {
     private String kullaniciAdi;
     private String sifre;
     private String email;
-    private String cinsiyet;
+    private Long cinsiyet;
 
     public String getKullaniciAdi() {
         return kullaniciAdi;
@@ -33,11 +34,11 @@ public class KullaniciDto {
         this.email = email;
     }
 
-    public String getCinsiyet() {
+    public Long getCinsiyet() {
         return cinsiyet;
     }
 
-    public void setCinsiyet(String cinsiyet) {
+    public void setCinsiyet(Long cinsiyet) {
         this.cinsiyet = cinsiyet;
     }
 }

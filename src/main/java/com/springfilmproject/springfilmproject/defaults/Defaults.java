@@ -1,4 +1,4 @@
-package com.springfilmproject.springfilmproject.Defaults;
+package com.springfilmproject.springfilmproject.defaults;
 
 public class Defaults {
     public static final String JSON_TRUE="true";

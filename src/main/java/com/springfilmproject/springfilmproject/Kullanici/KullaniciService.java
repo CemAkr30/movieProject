@@ -1,7 +1,9 @@
 package com.springfilmproject.springfilmproject.Kullanici;
 
-import com.springfilmproject.springfilmproject.Defaults.Defaults;
+import com.springfilmproject.springfilmproject.defaults.Defaults;
+import com.springfilmproject.springfilmproject.converters.CinsiyetConverter;
 import com.springfilmproject.springfilmproject.enums.Cinsiyet;
+import com.springfilmproject.springfilmproject.exception.CoreMessageException;
 import com.springfilmproject.springfilmproject.model.Kullanici;
 import org.springframework.stereotype.Service;
 
@@ -38,19 +40,22 @@ public class KullaniciService {
         return false;
     }
 
-    public Kullanici createKullanici(KullaniciDto kullaniciDto) {
-        Kullanici kullanici
-                 = new Kullanici();
+    public Kullanici createKullanici(KullaniciDto kullaniciDto) throws CoreMessageException {
+        Kullanici kullanici = new Kullanici();
+        CinsiyetConverter cinsiyetConverter = new CinsiyetConverter();
+
         if(kullaniciDto!=null){
                 kullanici.setKullaniciAdi(kullaniciDto.getKullaniciAdi());
                 kullanici.setSifre(kullaniciDto.getSifre());
                 kullanici.setEmail(kullaniciDto.getEmail());
-            if(Cinsiyet.ERKEK.toString().toUpperCase().equals(kullaniciDto.getCinsiyet().toString().toUpperCase())){
-                kullanici.setCinsiyet(Cinsiyet.ERKEK);
+            Cinsiyet cinsiyet
+            = cinsiyetConverter.convertToEntityAttribute(kullaniciDto.getCinsiyet());
+            if(cinsiyet!=null){
+                kullanici.setCinsiyet(cinsiyet);
             }else{
-                kullanici.setCinsiyet(Cinsiyet.KADIN);
+                throw new CoreMessageException("Cinsiyet alanı boş olamaz!!!");
             }
-                kullaniciRepository.save(kullanici);
+             kullaniciRepository.save(kullanici);
         }
         return kullanici;
     }

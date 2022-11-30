@@ -1,5 +1,6 @@
 package com.springfilmproject.springfilmproject.Kullanici;
 
+import com.springfilmproject.springfilmproject.exception.CoreMessageException;
 import com.springfilmproject.springfilmproject.model.Kullanici;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,13 +33,19 @@ public class KullaniciController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean delete(@PathVariable Long id){
+    public boolean delete(@PathVariable("id") Long id){
         return kullaniciService.kullaniciSil(id);
     }
 
     @PostMapping("/create")
     public String create(@RequestBody KullaniciDto kullaniciDto){
-        return kullaniciService.createKullanici(kullaniciDto).toString() ;
+        String vValue = "";
+        try {
+            vValue=   kullaniciService.createKullanici(kullaniciDto).toString() ;
+        } catch (CoreMessageException e) {
+            e.printStackTrace();
+        }
+        return vValue;
     }
 
     /*
