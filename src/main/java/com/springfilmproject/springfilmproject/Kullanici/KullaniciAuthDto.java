@@ -1,4 +1,4 @@
-package com.springfilmproject.springfilmproject.dto;
+package com.springfilmproject.springfilmproject.Kullanici;
 
 public class KullaniciAuthDto {
     private String kullaniciAdi;

@@ -1,12 +1,6 @@
-package com.springfilmproject.springfilmproject.controller;
+package com.springfilmproject.springfilmproject.Kullanici;
 
-import com.springfilmproject.springfilmproject.dto.KullaniciAuthDto;
-import com.springfilmproject.springfilmproject.dto.KullaniciDto;
-import com.springfilmproject.springfilmproject.enums.Cinsiyet;
 import com.springfilmproject.springfilmproject.model.Kullanici;
-import com.springfilmproject.springfilmproject.service.KullaniciService;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

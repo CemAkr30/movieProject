@@ -1,4 +1,4 @@
-package com.springfilmproject.springfilmproject.repository;
+package com.springfilmproject.springfilmproject.Kullanici;
 
 import com.springfilmproject.springfilmproject.model.Kullanici;
 import org.springframework.data.jpa.repository.JpaRepository;

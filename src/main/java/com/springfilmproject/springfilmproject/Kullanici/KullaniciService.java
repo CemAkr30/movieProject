@@ -1,15 +1,8 @@
-package com.springfilmproject.springfilmproject.service;
+package com.springfilmproject.springfilmproject.Kullanici;
 
-import com.springfilmproject.springfilmproject.dto.KullaniciAuthDto;
-import com.springfilmproject.springfilmproject.dto.KullaniciDto;
 import com.springfilmproject.springfilmproject.enums.Cinsiyet;
 import com.springfilmproject.springfilmproject.model.Kullanici;
-import com.springfilmproject.springfilmproject.repository.KullaniciRepository;
-import org.hibernate.query.NativeQuery;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
