@@ -43,22 +43,21 @@ public class KullaniciService {
     public Kullanici createKullanici(KullaniciDto kullaniciDto) throws CoreMessageException {
         Kullanici kullanici = new Kullanici();
         CinsiyetConverter cinsiyetConverter = new CinsiyetConverter();
-
+        Cinsiyet cinsiyet = null;
         if(kullaniciDto!=null){
-                    if(kullaniciDto.getKullaniciAdi()==null || kullaniciDto.getSifre()==null && kullaniciDto.getEmail()==null
-                    || "".equals(kullaniciDto.getEmail()) || "".equals(kullaniciDto.getSifre()) || "".equals(kullaniciDto.getKullaniciAdi())){
-                        throw new CoreMessageException("Alanlar boş olamaz!!!");
-                    }
+            cinsiyet = cinsiyetConverter.convertToEntityAttribute(kullaniciDto.getCinsiyet());
+              if( kullaniciDto.getKullaniciAdi()==null || kullaniciDto.getSifre()==null && kullaniciDto.getEmail()==null
+                      || kullaniciDto.getCinsiyet()==null
+             || "".equals(kullaniciDto.getEmail()) || "".equals(kullaniciDto.getSifre())
+                      || "".equals(kullaniciDto.getKullaniciAdi()) || "".equals(kullaniciDto.getCinsiyet()) ){
+                   throw new CoreMessageException("Alanlar boş olamaz!!!");
+               }
+
                 kullanici.setKullaniciAdi(kullaniciDto.getKullaniciAdi());
                 kullanici.setSifre(kullaniciDto.getSifre());
                 kullanici.setEmail(kullaniciDto.getEmail());
-            Cinsiyet cinsiyet
-            = cinsiyetConverter.convertToEntityAttribute(kullaniciDto.getCinsiyet());
-            if(cinsiyet!=null){
                 kullanici.setCinsiyet(cinsiyet);
-            }else{
-                throw new CoreMessageException("Cinsiyet alanı boş olamaz!!!");
-            }
+
              kullaniciRepository.save(kullanici);
         }
         return kullanici;
