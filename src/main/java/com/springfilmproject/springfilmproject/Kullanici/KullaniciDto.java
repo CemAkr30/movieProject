@@ -1,12 +1,6 @@
 package com.springfilmproject.springfilmproject.Kullanici;
 
-import com.springfilmproject.springfilmproject.enums.Cinsiyet;
-
 import lombok.NoArgsConstructor;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 
 @NoArgsConstructor
 public class KullaniciDto {
