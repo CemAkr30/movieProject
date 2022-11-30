@@ -45,6 +45,10 @@ public class KullaniciService {
         CinsiyetConverter cinsiyetConverter = new CinsiyetConverter();
 
         if(kullaniciDto!=null){
+                    if(kullaniciDto.getKullaniciAdi()==null || kullaniciDto.getSifre()==null && kullaniciDto.getEmail()==null
+                    || "".equals(kullaniciDto.getEmail()) || "".equals(kullaniciDto.getSifre()) || "".equals(kullaniciDto.getKullaniciAdi())){
+                        throw new CoreMessageException("Alanlar boş olamaz!!!");
+                    }
                 kullanici.setKullaniciAdi(kullaniciDto.getKullaniciAdi());
                 kullanici.setSifre(kullaniciDto.getSifre());
                 kullanici.setEmail(kullaniciDto.getEmail());
