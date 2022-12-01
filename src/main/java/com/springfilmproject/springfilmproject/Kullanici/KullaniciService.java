@@ -5,6 +5,7 @@ import com.springfilmproject.springfilmproject.converters.CinsiyetConverter;
 import com.springfilmproject.springfilmproject.enums.Cinsiyet;
 import com.springfilmproject.springfilmproject.exception.CoreMessageException;
 import com.springfilmproject.springfilmproject.model.Kullanici;
+import com.springfilmproject.springfilmproject.validation.Validation;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,8 +29,8 @@ public class KullaniciService {
     }
 
     public String kullaniciVarMi(KullaniciAuthDto kullaniciAuthDto) {
-        return  kullaniciRepository.countByKullaniciAdiAndSifre(kullaniciAuthDto.getKullaniciAdi(), kullaniciAuthDto.getSifre())
-                ==1 ? Defaults.JSON_TRUE : Defaults.JSON_FALSE;
+        return Validation.checkNumber(kullaniciRepository.countByKullaniciAdiAndSifre(kullaniciAuthDto.getKullaniciAdi(), kullaniciAuthDto.getSifre())
+        ) ? Defaults.JSON_TRUE : Defaults.JSON_FALSE;
     }
 
     public boolean kullaniciSil(Long kullaniciId) {
